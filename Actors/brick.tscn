@@ -1,16 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bky660vw4blfu"]
+[gd_scene load_steps=4 format=3 uid="uid://bky660vw4blfu"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_xm7up"]
+[ext_resource type="Texture2D" uid="uid://dl7if26oukbwn" path="res://Assets/Brick_Grey.png" id="1_ijnoh"]
+[ext_resource type="Script" path="res://Actors/brick.gd" id="1_nljvc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbaug"]
-size = Vector2(100, 40)
+size = Vector2(112, 40)
 
 [node name="Brick" type="CharacterBody2D" groups=["Bricks"]]
 motion_mode = 1
+script = ExtResource("1_nljvc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(100, 40)
-texture = SubResource("CanvasTexture_xm7up")
+position = Vector2(1.43051e-06, -2.38419e-07)
+scale = Vector2(4.66667, 5)
+texture = ExtResource("1_ijnoh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.90735e-06)
 shape = SubResource("RectangleShape2D_wbaug")
