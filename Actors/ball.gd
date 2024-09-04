@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var max_speed: float = 10.0
 @export var score_label: RichTextLabel
 @export var start_text: RichTextLabel
+@export var hud: CanvasLayer
+
 
 var forward = Vector2(1,1).normalized()
 const PADDLE_WIDTH: float = 100.0
@@ -11,6 +13,8 @@ var current_score: int = 0
 var is_running: bool = false
 
 func _physics_process(delta: float) -> void:
+	if (is_running)
+	
 	if (not is_running):
 		if (Input.is_action_just_pressed("click_window")):
 			is_running = true
@@ -37,5 +41,3 @@ func _physics_process(delta: float) -> void:
 
 		if (collision.get_collider().is_in_group("Game_Over")):
 			is_running = false
-			start_text.visible = true
-			start_text.text = "GAME OVER"

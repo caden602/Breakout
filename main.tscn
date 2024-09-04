@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dlcsl2b4tiuu5"]
+[gd_scene load_steps=17 format=3 uid="uid://dlcsl2b4tiuu5"]
 
 [ext_resource type="Script" path="res://Actors/ball.gd" id="1_q7xo7"]
 [ext_resource type="Script" path="res://Actors/paddle.gd" id="2_a6fvk"]
@@ -12,18 +12,14 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_bam4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60wnu"]
-size = Vector2(40, 40)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tlp0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eber4"]
-size = Vector2(100, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ik22"]
-size = Vector2(1149, 39)
+size = Vector2(74, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq2fv"]
-size = Vector2(20, 661)
+size = Vector2(20, 704.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjfq8"]
 size = Vector2(1188.5, 21.5)
@@ -47,25 +43,26 @@ sources/0 = SubResource("TileSetAtlasSource_auawv")
 [node name="Main" type="Node2D"]
 
 [node name="Ball" type="CharacterBody2D" parent="."]
-visible = false
-position = Vector2(570, 419)
+position = Vector2(189, 258)
 motion_mode = 1
 script = ExtResource("1_q7xo7")
+speed = null
+max_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
-scale = Vector2(40, 40)
+scale = Vector2(20, 20)
 texture = SubResource("CanvasTexture_bam4x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("RectangleShape2D_60wnu")
 
 [node name="Paddle" type="CharacterBody2D" parent="." groups=["Paddle"]]
-position = Vector2(176, -20)
+position = Vector2(189, 16)
 motion_mode = 1
 script = ExtResource("2_a6fvk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paddle"]
-scale = Vector2(100, 40)
+scale = Vector2(75, 30)
 texture = SubResource("CanvasTexture_tlp0f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
@@ -74,27 +71,23 @@ shape = SubResource("RectangleShape2D_eber4")
 [node name="Left_wall3" type="StaticBody2D" parent="."]
 position = Vector2(296, -351)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall3"]
-position = Vector2(280.5, 330.5)
-shape = SubResource("RectangleShape2D_8ik22")
-
 [node name="Left_wall2" type="StaticBody2D" parent="."]
 position = Vector2(1178, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall2"]
-position = Vector2(-13, 321)
+position = Vector2(-817, 325)
 shape = SubResource("RectangleShape2D_dq2fv")
 
 [node name="Left_wall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall"]
-position = Vector2(-13, 321)
+position = Vector2(21, 325)
 shape = SubResource("RectangleShape2D_dq2fv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Game_Over"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(572.75, 668.25)
+position = Vector2(570, -20)
 shape = SubResource("RectangleShape2D_hjfq8")
 
 [node name="BrickManager" type="Node2D" parent="."]
