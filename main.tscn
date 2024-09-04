@@ -1,9 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dlcsl2b4tiuu5"]
+[gd_scene load_steps=18 format=3 uid="uid://dlcsl2b4tiuu5"]
 
 [ext_resource type="Script" path="res://Actors/ball.gd" id="1_q7xo7"]
 [ext_resource type="Script" path="res://Actors/paddle.gd" id="2_a6fvk"]
 [ext_resource type="Script" path="res://Actors/brick_manager.gd" id="3_7cq2u"]
 [ext_resource type="PackedScene" uid="uid://bky660vw4blfu" path="res://Actors/brick.tscn" id="3_p5lpf"]
+[ext_resource type="Texture2D" uid="uid://byr3ckpsibxbr" path="res://Assets/tetrominoes.png" id="5_kyi0l"]
+[ext_resource type="Script" path="res://tile_map.gd" id="6_4432w"]
+[ext_resource type="Script" path="res://camera.gd" id="6_l3tg7"]
+[ext_resource type="PackedScene" uid="uid://cwp2s38krcbvu" path="res://Actors/hud.tscn" id="8_1u8d1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_bam4x"]
 
@@ -21,24 +25,32 @@ size = Vector2(1149, 39)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq2fv"]
 size = Vector2(20, 661)
 
-[sub_resource type="SystemFont" id="SystemFont_4sas1"]
-font_names = PackedStringArray("Impact")
-
-[sub_resource type="SystemFont" id="SystemFont_wkadl"]
-font_names = PackedStringArray("Impact")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjfq8"]
 size = Vector2(1188.5, 21.5)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_auawv"]
+texture = ExtResource("5_kyi0l")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_rcy3r"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_auawv")
+
 [node name="Main" type="Node2D"]
 
-[node name="Ball" type="CharacterBody2D" parent="." node_paths=PackedStringArray("score_label", "start_text")]
+[node name="Ball" type="CharacterBody2D" parent="."]
 visible = false
 position = Vector2(570, 419)
 motion_mode = 1
 script = ExtResource("1_q7xo7")
-score_label = NodePath("../Score_Label")
-start_text = NodePath("../Start_Text")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
 scale = Vector2(40, 40)
@@ -48,7 +60,7 @@ texture = SubResource("CanvasTexture_bam4x")
 shape = SubResource("RectangleShape2D_60wnu")
 
 [node name="Paddle" type="CharacterBody2D" parent="." groups=["Paddle"]]
-position = Vector2(695, 579)
+position = Vector2(176, -20)
 motion_mode = 1
 script = ExtResource("2_a6fvk")
 
@@ -79,28 +91,6 @@ shape = SubResource("RectangleShape2D_dq2fv")
 position = Vector2(-13, 321)
 shape = SubResource("RectangleShape2D_dq2fv")
 
-[node name="Score_Label" type="RichTextLabel" parent="."]
-offset_right = 120.0
-offset_bottom = 45.0
-theme_override_fonts/normal_font = SubResource("SystemFont_4sas1")
-theme_override_font_sizes/normal_font_size = 25
-text = "SCORE:"
-
-[node name="Start_Text" type="RichTextLabel" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 381.0
-offset_top = 263.0
-offset_right = 750.0
-offset_bottom = 376.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_fonts/normal_font = SubResource("SystemFont_wkadl")
-theme_override_font_sizes/normal_font_size = 60
-text = "CLICK TO START"
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Game_Over"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -112,3 +102,17 @@ script = ExtResource("3_7cq2u")
 
 [node name="Brick" parent="BrickManager" instance=ExtResource("3_p5lpf")]
 position = Vector2(685, 345)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_rcy3r")
+format = 2
+layer_0/name = "board"
+layer_0/tile_data = PackedInt32Array(0, 458752, 0, 65536, 458752, 0, 131072, 458752, 0, 196608, 458752, 0, 262144, 458752, 0, 327680, 458752, 0, 393216, 458752, 0, 458752, 458752, 0, 524288, 458752, 0, 589824, 458752, 0, 655360, 458752, 0, 720896, 458752, 0, 786432, 458752, 0, 851968, 458752, 0, 917504, 458752, 0, 983040, 458752, 0, 1048576, 458752, 0, 1114112, 458752, 0, 1179648, 458752, 0, 1245184, 458752, 0, 1310720, 458752, 0, 1376256, 458752, 0, 1376257, 458752, 0, 1376258, 458752, 0, 1376259, 458752, 0, 1376260, 458752, 0, 1376261, 458752, 0, 1376262, 458752, 0, 1376263, 458752, 0, 1376264, 458752, 0, 1376265, 458752, 0, 1376266, 458752, 0, 1376267, 458752, 0, 1310731, 458752, 0, 1245195, 458752, 0, 1179659, 458752, 0, 1114123, 458752, 0, 1048587, 458752, 0, 983051, 458752, 0, 917515, 458752, 0, 851979, 458752, 0, 786443, 458752, 0, 720907, 458752, 0, 655371, 458752, 0, 589835, 458752, 0, 524299, 458752, 0, 458763, 458752, 0, 393227, 458752, 0, 327691, 458752, 0, 262155, 458752, 0, 196619, 458752, 0, 131083, 458752, 0, 65547, 458752, 0, 11, 458752, 0)
+layer_1/name = "active"
+script = ExtResource("6_4432w")
+
+[node name="HUD" parent="TileMap" instance=ExtResource("8_1u8d1")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(325, 352)
+script = ExtResource("6_l3tg7")

@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwp2s38krcbvu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qstip"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da1ju"]
+bg_color = Color(0.295407, 0.723357, 0.924911, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6j2n"]
+bg_color = Color(0.849058, 0, 0.0415373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dptee"]
+bg_color = Color(0.266667, 0.596078, 0.866667, 1)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 425.0
+offset_top = 150.0
+offset_right = 625.0
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qstip")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 430.0
+offset_top = 100.0
+offset_right = 610.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 30
+text = "NEXT PIECE:"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 430.0
+offset_top = 331.0
+offset_right = 610.0
+offset_bottom = 376.0
+theme_override_font_sizes/font_size = 30
+text = "SCORE:"
+horizontal_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="."]
+offset_left = 90.0
+offset_top = 300.0
+offset_right = 278.0
+offset_bottom = 345.0
+theme_override_font_sizes/font_size = 30
+text = " GAME OVER!"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 430.0
+offset_top = 500.0
+offset_right = 610.0
+offset_bottom = 540.0
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = SubResource("StyleBoxFlat_da1ju")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m6j2n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dptee")
+text = "NEW GAME
+"
