@@ -2,10 +2,8 @@ extends CharacterBody2D
 
 @export var speed: float = 300.0
 @export var max_speed: float = 1000.0
-@export var score_label: RichTextLabel
-@export var start_text: RichTextLabel
-@export var hud: CanvasLayer
 @export var tile_map: TileMap
+
 
 
 var forward = Vector2(1,1).normalized()
@@ -22,10 +20,10 @@ func _physics_process(delta: float) -> void:
 		speed = clamp(speed + 0.5, 1, max_speed)
 		
 		if (collision.get_collider().is_in_group("Bricks")):
-			# collision.get_collider().queue_free()
-			collision.get_collider().color_change(self)
-			current_score += 10
-			score_label.text = "SCORE: " + str(current_score)
+			tile_map.delete_board_piece()
+			# collision.get_collider().color_change(self)
+			# current_score += 10
+			# score_label.text = "SCORE: " + str(current_score)
 
 		if (collision.get_collider().is_in_group("Paddle")):
 			var paddle_x = collision.get_collider().position.x - PADDLE_WIDTH / 2

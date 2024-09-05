@@ -1,5 +1,7 @@
 extends TileMap
 
+@export var ball: CharacterBody2D
+
 #tetrominoes
 var i_0 := [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 var i_90 := [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
@@ -89,6 +91,7 @@ func new_game():
 	score = 0
 	speed = 1.0
 	game_running = true
+	ball.position = Vector2(189, 258)
 	steps = [0, 0, 0] #0:left, 1:right, 2:down
 	$HUD.get_node("GameOverLabel").hide()
 	#clear everything
@@ -144,6 +147,18 @@ func create_piece():
 func clear_piece():
 	for i in active_piece:
 		erase_cell(active_layer, cur_pos + i)
+
+func delete_board_piece():
+	land_piece()
+	for i in active_piece:
+		erase_cell(board_layer, cur_pos + i)
+	piece_type = next_piece_type
+	piece_atlas = next_piece_atlas
+	next_piece_type = pick_piece()
+	next_piece_atlas = Vector2i(shapes_full.find(next_piece_type), 0)
+	clear_panel()
+	create_piece()
+	check_game_over()
 
 func draw_piece(piece, pos, atlas):
 	for i in piece:
