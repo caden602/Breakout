@@ -25,16 +25,26 @@ size = Vector2(391.25, 21.5)
 texture = ExtResource("5_kyi0l")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_rcy3r"]
 tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_auawv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wepv1"]
@@ -50,6 +60,7 @@ size = Vector2(30, 680.5)
 
 [node name="Ball" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map")]
 position = Vector2(189, 258)
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_q7xo7")
 tile_map = NodePath("../TileMap")
@@ -107,7 +118,7 @@ position = Vector2(-1203, -67)
 shape = SubResource("RectangleShape2D_wepv1")
 
 [node name="Left_wall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-1379.62, -420.5)
+position = Vector2(-1380, -422)
 shape = SubResource("RectangleShape2D_g4lls")
 
 [node name="Right_wall" type="CollisionShape2D" parent="Walls"]

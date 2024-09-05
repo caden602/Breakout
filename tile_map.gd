@@ -104,13 +104,13 @@ func new_game():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if game_running:
-		if Input.is_action_pressed("ui_left"):
+		if Input.is_action_pressed("left"):
 			steps[0] += 10
-		elif Input.is_action_pressed("ui_right"):
+		elif Input.is_action_pressed("right"):
 			steps[1] += 10
-		elif Input.is_action_pressed("ui_down"):
+		elif Input.is_action_pressed("down"):
 			steps[2] += 10
-		elif Input.is_action_just_pressed("ui_up"):
+		elif Input.is_action_just_pressed("up"):
 			rotate_piece()
 		
 		#apply downward movement every frame
