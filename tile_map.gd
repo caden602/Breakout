@@ -1,7 +1,5 @@
 extends TileMap
 
-signal game_running
-
 #tetrominoes
 var i_0 := [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 var i_90 := [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
@@ -81,10 +79,9 @@ var next_piece_atlas : Vector2i
 var board_layer : int = 0
 var active_layer : int = 1
 
-var is_running: bool = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$HUD.get_node("GameOverLabel").hide()
 	$HUD.get_node("StartButton").pressed.connect(new_game)
 
 func new_game():
@@ -241,5 +238,8 @@ func check_game_over():
 	for i in active_piece:
 		if not is_free(i + cur_pos):
 			land_piece()
-			$HUD.get_node("GameOverLabel").show()
-			game_running = false
+			game_over_screen()
+
+func game_over_screen():
+	$HUD.get_node("GameOverLabel").show()
+	game_running = false

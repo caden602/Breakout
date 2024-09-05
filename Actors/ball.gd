@@ -1,28 +1,22 @@
 extends CharacterBody2D
 
-@export var speed: float = 3.0
-@export var max_speed: float = 10.0
+@export var speed: float = 300.0
+@export var max_speed: float = 1000.0
 @export var score_label: RichTextLabel
 @export var start_text: RichTextLabel
 @export var hud: CanvasLayer
+@export var tile_map: TileMap
 
 
 var forward = Vector2(1,1).normalized()
 const PADDLE_WIDTH: float = 100.0
 var current_score: int = 0
-var is_running: bool = false
 
 func _physics_process(delta: float) -> void:
-	if (is_running)
-	
-	if (not is_running):
-		if (Input.is_action_just_pressed("click_window")):
-			is_running = true
-			start_text.visible = false
-			visible = true
+	if (not tile_map.game_running):
 		return
 
-	var collision: KinematicCollision2D = move_and_collide(forward * speed)
+	var collision: KinematicCollision2D = move_and_collide(forward * speed * delta)
 	if (collision):
 		forward = forward.bounce(collision.get_normal())
 		speed = clamp(speed + 0.5, 1, max_speed)
@@ -40,4 +34,4 @@ func _physics_process(delta: float) -> void:
 			forward = Vector2.from_angle(bounce_angle)
 
 		if (collision.get_collider().is_in_group("Game_Over")):
-			is_running = false
+			tile_map.game_over_screen()

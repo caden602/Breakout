@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlcsl2b4tiuu5"]
+[gd_scene load_steps=19 format=3 uid="uid://dlcsl2b4tiuu5"]
 
 [ext_resource type="Script" path="res://Actors/ball.gd" id="1_q7xo7"]
 [ext_resource type="Script" path="res://Actors/paddle.gd" id="2_a6fvk"]
@@ -18,11 +18,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eber4"]
 size = Vector2(74, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq2fv"]
-size = Vector2(20, 704.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjfq8"]
-size = Vector2(1188.5, 21.5)
+size = Vector2(391.25, 21.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_auawv"]
 texture = ExtResource("5_kyi0l")
@@ -40,14 +37,22 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_auawv")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wepv1"]
+size = Vector2(382, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4lls"]
+size = Vector2(32.75, 685)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtmb5"]
+size = Vector2(30, 680.5)
+
 [node name="Main" type="Node2D"]
 
-[node name="Ball" type="CharacterBody2D" parent="."]
+[node name="Ball" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map")]
 position = Vector2(189, 258)
 motion_mode = 1
 script = ExtResource("1_q7xo7")
-speed = null
-max_speed = null
+tile_map = NodePath("../TileMap")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
 scale = Vector2(20, 20)
@@ -68,33 +73,17 @@ texture = SubResource("CanvasTexture_tlp0f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
 shape = SubResource("RectangleShape2D_eber4")
 
-[node name="Left_wall3" type="StaticBody2D" parent="."]
-position = Vector2(296, -351)
+[node name="GameOverWall" type="StaticBody2D" parent="." groups=["Game_Over"]]
 
-[node name="Left_wall2" type="StaticBody2D" parent="."]
-position = Vector2(1178, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall2"]
-position = Vector2(-817, 325)
-shape = SubResource("RectangleShape2D_dq2fv")
-
-[node name="Left_wall" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_wall"]
-position = Vector2(21, 325)
-shape = SubResource("RectangleShape2D_dq2fv")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Game_Over"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(570, -20)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverWall"]
+position = Vector2(193, -21)
 shape = SubResource("RectangleShape2D_hjfq8")
 
 [node name="BrickManager" type="Node2D" parent="."]
 script = ExtResource("3_7cq2u")
 
 [node name="Brick" parent="BrickManager" instance=ExtResource("3_p5lpf")]
-position = Vector2(685, 345)
+position = Vector2(833, 358)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rcy3r")
@@ -109,3 +98,18 @@ script = ExtResource("6_4432w")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(325, 352)
 script = ExtResource("6_l3tg7")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2(1396, 754)
+
+[node name="Bottom_wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1203, -67)
+shape = SubResource("RectangleShape2D_wepv1")
+
+[node name="Left_wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1379.62, -420.5)
+shape = SubResource("RectangleShape2D_g4lls")
+
+[node name="Right_wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1029, -422.75)
+shape = SubResource("RectangleShape2D_mtmb5")
