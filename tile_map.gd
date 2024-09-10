@@ -209,6 +209,10 @@ func can_rotate():
 func is_free(pos):
 	return get_cell_source_id(board_layer, pos) == -1
 
+# func track_piece():
+	#add piece components to an array
+	#add that array to another array
+	#how to track piece???
 
 func land_piece():
 	#remove each segment from the active layer and move to board layer

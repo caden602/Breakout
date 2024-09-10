@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var max_speed: float = 1000.0
 @export var tile_map: TileMap
 
-
+signal collision_detected(collider)
 
 var forward = Vector2(1,1).normalized()
 const PADDLE_WIDTH: float = 100.0
@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 		speed = clamp(speed + 0.5, 1, max_speed)
 		
 		if (collision.get_collider().is_in_group("Bricks")):
+			collision_detected.emit(collision.get_collider())
 			tile_map.delete_board_piece()
 			# collision.get_collider().color_change(self)
 

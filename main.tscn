@@ -72,7 +72,7 @@ texture = SubResource("CanvasTexture_bam4x")
 shape = SubResource("RectangleShape2D_60wnu")
 
 [node name="Paddle" type="CharacterBody2D" parent="." groups=["Paddle"]]
-position = Vector2(189, 16)
+position = Vector2(180, 16)
 motion_mode = 1
 script = ExtResource("2_a6fvk")
 
@@ -106,9 +106,10 @@ ball = NodePath("../Ball")
 
 [node name="HUD" parent="TileMap" instance=ExtResource("8_1u8d1")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ball")]
 offset = Vector2(325, 352)
 script = ExtResource("6_l3tg7")
+ball = NodePath("../Ball")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2(1396, 754)
