@@ -125,6 +125,7 @@ func _process(delta):
 				steps[i] = 0
 
 func pick_piece():
+	add_to_group("Bricks")
 	var piece
 	if not shapes.is_empty():
 		shapes.shuffle()
@@ -149,8 +150,9 @@ func clear_piece():
 		erase_cell(active_layer, cur_pos + i)
 
 func delete_board_piece():
-	land_piece()
 	for i in active_piece:
+		erase_cell(active_layer, cur_pos + i)
+		set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
 		erase_cell(board_layer, cur_pos + i)
 	piece_type = next_piece_type
 	piece_atlas = next_piece_atlas
@@ -207,11 +209,14 @@ func can_rotate():
 func is_free(pos):
 	return get_cell_source_id(board_layer, pos) == -1
 
+
 func land_piece():
 	#remove each segment from the active layer and move to board layer
+	remove_from_group("Bricks")
 	for i in active_piece:
 		erase_cell(active_layer, cur_pos + i)
 		set_cell(board_layer, cur_pos + i, tile_id, piece_atlas)
+		#remove_from_group("Bricks")
 
 func clear_panel():
 	for i in range(14, 19):

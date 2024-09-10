@@ -22,13 +22,11 @@ func _physics_process(delta: float) -> void:
 		if (collision.get_collider().is_in_group("Bricks")):
 			tile_map.delete_board_piece()
 			# collision.get_collider().color_change(self)
-			# current_score += 10
-			# score_label.text = "SCORE: " + str(current_score)
 
 		if (collision.get_collider().is_in_group("Paddle")):
 			var paddle_x = collision.get_collider().position.x - PADDLE_WIDTH / 2
 			var pos_on_paddle = (position.x - paddle_x) / PADDLE_WIDTH
-			var bounce_angle = lerp(-PI * 0.8, -PI * 0.2, pos_on_paddle)
+			var bounce_angle = lerp(PI * 0.8, PI * 0.2, pos_on_paddle)
 			forward = Vector2.from_angle(bounce_angle)
 
 		if (collision.get_collider().is_in_group("Game_Over")):
